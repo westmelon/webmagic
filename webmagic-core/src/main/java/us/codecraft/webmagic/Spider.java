@@ -402,7 +402,7 @@ public class Spider implements Runnable, Task {
 
     private void processRequest(Request request) {
         Page page = downloader.download(request, this);
-        if (page.isDownloadSuccess()){
+        if (page.isDownloadSuccess() && site.getAcceptStatCode().contains(page.getStatusCode())){
             onDownloadSuccess(request, page);
         } else {
             onDownloaderFail(request);
